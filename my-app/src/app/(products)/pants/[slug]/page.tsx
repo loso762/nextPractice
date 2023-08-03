@@ -1,4 +1,5 @@
-import {Metadata} from "next";
+import {getProduct, getProducts} from "@/service/products";
+import {NOTFOUND} from "dns";
 import React from "react";
 
 type Props = {
@@ -13,15 +14,21 @@ export function generateMetadata({params}: Props) {
   };
 }
 
-function Pantspage({params}: Props) {
-  return <div>{params.slug} detail!</div>;
+async function Pantspage({params: {slug}}: Props) {
+  const product = await getProduct(slug);
+
+  if (!product) {
+    return NOTFOUND;
+  }
+
+  return <div>{product.name} detail!</div>;
 }
 
 export default Pantspage;
 
-export function generateStaticParams() {
-  const products = ["shortPants", "longPants"];
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((product) => ({
-    slug: product,
+    slug: product.id,
   }));
 }

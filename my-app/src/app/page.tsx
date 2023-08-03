@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 
 import styles from "./page.module.css";
+import Counter from "@/components/Counter";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>hi</div>
+      <Counter></Counter>
     </main>
   );
 }

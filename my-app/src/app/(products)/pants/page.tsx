@@ -1,16 +1,17 @@
+import {getProducts} from "@/service/products";
 import Link from "next/link";
 import React from "react";
 
-const products = [`long_pants`, "short_pants", "jeans"];
+async function Pantspage() {
+  const products = await getProducts();
 
-function Pantspage() {
   return (
     <>
       <h1>제품소개 페이지</h1>
       <ul>
         {products.map((product, idx) => (
           <li key={idx}>
-            <Link href={`pants/${product}`}>{product}</Link>
+            <Link href={`pants/${product.id}`}>{product.name}</Link>
           </li>
         ))}
       </ul>
