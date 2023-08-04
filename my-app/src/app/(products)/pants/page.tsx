@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 async function Pantspage() {
+  throw new Error();
   const products = await getProducts();
 
   return (
