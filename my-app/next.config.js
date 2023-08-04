@@ -16,6 +16,15 @@ const nextConfig = {
       },
     ];
   },
+
+  async rewrites() {
+    return [
+      {
+        source: "/items/:slug",
+        destination: "/pants/:slug",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

@@ -1,5 +1,6 @@
+import GoproductButton from "@/components/GoproductButton";
 import {getProduct, getProducts} from "@/service/products";
-import {NOTFOUND} from "dns";
+import {redirect} from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -18,10 +19,15 @@ async function Pantspage({params: {slug}}: Props) {
   const product = await getProduct(slug);
 
   if (!product) {
-    return NOTFOUND;
+    redirect("/pants");
   }
 
-  return <div>{product.name} detail!</div>;
+  return (
+    <>
+      <GoproductButton />
+      <div>{product.name} detail!</div>
+    </>
+  );
 }
 
 export default Pantspage;
